@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coordinate Training</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel='stylesheet' type='text/css' href='./css/reset.css'>
+        <link rel='stylesheet' type='text/css' href='./css/navbar.css'>
+        <link rel='stylesheet' type='text/css' href='./css/coordinate.css'>
+    </head>
+
+    <body>
+        <header>
+            <nav class='navbar'>
+                <div class='flex'>
+                    <div class='navbar-title'>
+                        <h2>
+                            Chess Vision Trainer
+                        </h2>
+                    </div>
+                    <i class="fas fa-bars fa-2x"></i>
+                </div>
+                <div class='tabs hide'>
+                    <ul class='nav-ul'>
+                        <li class='nav-li'>
+                            <a href='./index.html' class='tab'>Shortest Path Problem</a>
+                        </li>
+                        <li class='nav-li'>
+                            <a href='./coordinate.html' class='tab'>Coordinate Training</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class='container'>
+                <div class='main'>
+                    <div class='board'>
+                        <p class='coordinateText'></p>
+                    </div>
+                    <div class='desc'>
+                        <div class='title'>
+                            <h3>COORDINATE TRAINING</h3>
+                        </div>
+
+                        <div class='title-desc'>
+                            Quickly learn chess coordinates
+                        </div>
+
+                        <div class='image-container'>
+                            <img src='./assets/pic.png' alt='pic'>
+                        </div>
+
+
+                        <div class='start-only'>
+                            <div class='instructions'>
+                                Knowledge of chess coordinate is very important in chess.
+                                <ul>
+                                    <li>
+                                        Chess books and exercises use algrebraic notation extensively.
+                                    </li>
+                                    <li>
+                                        It helps in conversation related to chess.
+                                    </li>
+                                    <li>
+                                        It aids in analyzing and studying games.
+                                    </li>
+                                </ul>
+                                <br>
+                                <p>
+                                    A coordinate will be shown in the board and you need to click on corresponding
+                                    square.
+                                </p>
+                            </div>
+                            <div class='button-div'>
+                                <button class='start-btn'>
+                                    <h4 class='start-btn-text'>
+                                        Start Training
+                                    </h4>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class='afterstart hide'>
+                            <div class='score'>
+                                <h5 class='score-title'>SCORE</h5>
+                                <p class='score-number'>0/0</p>
+                            </div>
+
+                            <div class='options'>
+                                <p id='flipboard'>Flip Board</p>
+                                <input type='checkbox' id='checkbox'>
+                                <label for='checkbox'>Show Coordinates</label>
+                                <br>
+                                <i class="fas fa-volume-up sound-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class='footer' style='background-color: black; text-align:center; padding:20px;'>
+                <p style='color:white;'>
+                    All Rights Reserved &#169; 2021
+                </p>
+            </div>
+        </footer>
+    </body>
+    <script type='module' src='./js/coordinate.js'></script>
+
+</html>
