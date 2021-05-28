@@ -74,6 +74,7 @@ let numberOfPlayerMoves;
 let playerFoundShortestMove;
 let numberOfCorrectAttempts, numberOfTotalAttempts;
 let pieceArrCopy;
+let sourceSquare;
 
 let start = () => {
     rank = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -195,7 +196,7 @@ let reset = () => {
         }
     }
 
-
+    sourceSquare = new Cell(Math.floor(rand3 / 8), rand3 % 8, 0);
     squareToReach = new Cell(Math.floor(rand2 / 8), rand2 % 8, 0);
 
     //question in notation
@@ -206,6 +207,11 @@ let draw = () => {
     ctx.drawImage(boardsprite, 0, 0, canvas.width, canvas.height);
 
     if (state.current == state.playing) {
+        //show source square before first move
+        if (numberOfPlayerMoves == 0) {
+            sourceSquare.draw(ctx, canvas, 'yellow');
+        }
+
         if (pieceArr[0].isSelected) {
             ctx.beginPath();
             ctx.fillStyle = 'rgba(150,150,0,100)';
@@ -219,7 +225,7 @@ let draw = () => {
         });
 
         //show destination square
-        squareToReach.draw(ctx, canvas);
+        squareToReach.draw(ctx, canvas, 'green');
 
         if (pieceArr[0].isSelected) {
             //show valid moves
