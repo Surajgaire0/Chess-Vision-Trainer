@@ -73,6 +73,7 @@ let squareToReach;
 let numberOfPlayerMoves;
 let playerFoundShortestMove;
 let numberOfCorrectAttempts, numberOfTotalAttempts;
+let pieceArrCopy;
 
 let start = () => {
     rank = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -152,26 +153,27 @@ let reset = () => {
 
     //make pieceArr
     pieceArr = [];
+    pieceArrCopy = [];
 
-    let addPieceToArray = (boardArr, x_pos, y_pos) => {
+    let addPieceToArray = (boardArr, x_pos, y_pos, array) => {
         switch (Math.abs(boardArr[x_pos][y_pos])) {
             case 1:
-                pieceArr.push(new King(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new King(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
             case 2:
-                pieceArr.push(new Pawn(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new Pawn(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
             case 3:
-                pieceArr.push(new Bishop(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new Bishop(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
             case 4:
-                pieceArr.push(new Knight(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new Knight(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
             case 5:
-                pieceArr.push(new Queen(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new Queen(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
             case 6:
-                pieceArr.push(new Rook(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
+                array.push(new Rook(sprite, canvas, ctx, tempcolor, [x_pos, y_pos]));
                 break;
         }
     };
@@ -179,18 +181,19 @@ let reset = () => {
     //for piece to move
     let t1 = Math.floor(rand3 / 8), t2 = rand3 % 8; let tempcolor;
     tempcolor = 'white';
-    addPieceToArray(boardArr, t1, t2);
+    addPieceToArray(boardArr, t1, t2, pieceArr);
+    addPieceToArray(boardArr, t1, t2, pieceArrCopy);
 
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
 
             if (boardArr[i][j] != 0 && !(i == t1 && j == t2)) {
                 tempcolor = boardArr[i][j] < 0 ? 'black' : 'white';
-                addPieceToArray(boardArr, i, j);
+                addPieceToArray(boardArr, i, j, pieceArr);
+                addPieceToArray(boardArr, i, j, pieceArrCopy);
             }
         }
     }
-
 
 
     squareToReach = new Cell(Math.floor(rand2 / 8), rand2 % 8, 0);
@@ -232,14 +235,20 @@ let draw = () => {
 
     }
     else if (state.current == state.next) {
-        pieceArr.forEach((piece) => {
-            piece.draw();
-        });
         squareToReach.draw(ctx, canvas);
 
         if (!playerFoundShortestMove) {
+            //show initial position while drawing path
+            pieceArrCopy.forEach((piece) => {
+                piece.draw();
+            });
             drawPath(arrowsprite, ctx, canvas, minpath);
-        };
+        }
+        else {
+            pieceArr.forEach((piece) => {
+                piece.draw();
+            });
+        }
 
     }
 };
